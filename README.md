@@ -1,72 +1,54 @@
-# Readmission Analysis - Power BI & Databricks Project
+# NHS referral to Treatment Wait Time Analysis and Optimization
 
-This repository contains a Jupyter notebook that supports a Power BI visual analytics project focused on analyzing hospital readmissions over time. It is designed to work with Databricks and demonstrates how to prepare data for dynamic filtering, particularly for calculating metrics over the last 12 months excluding the latest month of data.
+## Introduction
+This project focuses on analyzing NHS patient treatment wait times using statistical and optimization techniques. The objective is to assess and improve the performance of NHS trusts against key national targets for 2025/26.
 
----
+## Aim and Questions of Interest
+- What are the current trends in NHS Referral to Treatment wait times?
+- Can we identify key factors affecting delays?
+- How can we optimize resource allocation to meet national targets?
 
-## 📊 Project Overview
+## Libraries Used
+- `matplotlib.pyplot`
+- `XGBoost`
+- `numpy`
+- `optuna`
+- `pandas`
+- `seaborn`
 
-The main objective of this project is to:
-- Calculate and visualize hospital readmissions over time.
-- Dynamically exclude the latest month from rolling 12-month summaries.
-- Support Power BI matrix visuals via backend logic in Databricks SQL and Python.
+## Data Preparation and Cleaning
+Data was sourced from an Excel file and included cleaning steps such as:
+- Reading the dataset into a DataFrame.
+- Checking for null values and dropping irrelevant or missing entries.
+- Selecting relevant columns for modeling.
 
----
+## Exploratory Data Analysis
+The analysis involved:
+- Descriptive statistics to understand the dataset.
+- Visualizations such as histograms and scatter plots to explore distributions and relationships.
 
-## 📁 Files
+## Modeling and Optimization
+The modeling approach included:
+- Hyperparameter tuning using Optuna for an XGBoost regressor.
+- Evaluation of trial performances using cross-validation.
+- Selection of the best parameters to reduce wait times.
 
-- `Project.ipynb`: The main notebook that:
-  - Connects to your data source
-  - Performs necessary preprocessing
-  - Adds derived columns (like `monthsFromLatest`)
-  - Prepares the dataset for export to Power BI
+## Results and Evaluation
+The best model configuration was assessed using:
+- R² score and RMSE to evaluate model accuracy.
+- Visualization of model predictions versus actual wait times.
 
----
+## Conclusion
+- A predictive model was built to identify factors impacting patient wait times.
+- Optuna successfully optimized model parameters.
+- The model can guide NHS trusts toward achieving treatment targets.
 
-## 🛠 Key Features
+## Limitations
+- The model is limited to the features available in the dataset.
+- External factors (e.g., policy changes, seasonal trends) were not considered.
+- Further validation with unseen data is necessary.
 
-- ✅ Extracts the latest month in a dataset
-- ✅ Calculates a `monthsFromLatest` column
-- ✅ Supports rolling-window metrics
-- ✅ Designed to integrate cleanly with Power BI dashboards
-
----
-
-## 🚀 Getting Started
-
-1. Clone this repository.
-2. Open `Project.ipynb` in a Databricks workspace or local Jupyter environment.
-3. Ensure your data source is properly connected (modify as needed).
-4. Run all cells to generate the processed output.
-5. Export the final dataset to Power BI or a target system.
-
----
-
-## 🧪 Requirements
-
-- Databricks Runtime or local Python 3.8+
-- PySpark (if running locally)
-- pandas, numpy
-- A dataset with a `monthStartDate` column in `yyyy-MM-dd` format
-
----
-
-## 📈 Example Output
-
-Final dataset includes:
-- `monthStartDate`
-- `readmissionCount`
-- `monthsFromLatest` column
-- Calculated measures for filtering and visualization
-
----
-
-## 📬 Contact
-
-For questions or collaboration, please reach out via [GitHub Issues](https://github.com/your-repo/issues).
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
+## Further Analysis
+- Incorporate time-series modeling for temporal patterns.
+- Add external datasets (e.g., staffing levels, regional demographics).
+- Develop a decision-support tool to simulate policy impacts.
